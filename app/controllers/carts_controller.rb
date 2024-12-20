@@ -8,7 +8,11 @@ class CartsController < ApplicationController
   def create
     @cart = find_or_create_cart
 
-    @product = Product.find(params[:product_id])
+    @product = Product.find_by(id: params[:product_id])
+    if @product.nil?
+      return render json: {message: 'Product not found'}, status: :not_found
+    end
+
     if @cart.products.find_by(id: @product.id).present?
       return render json: {message: 'Product already in the cart'}, status: :bad_request
     end
@@ -34,7 +38,13 @@ class CartsController < ApplicationController
       return render json: { message: 'Product not in the cart' }, status: :bad_request
     end
 
-    @cart_item.update!(quantity: @cart_item.quantity + params[:quantity].to_i)
+    final_quantity = @cart_item.quantity + params[:quantity].to_i
+    if final_quantity.positive?
+      @cart_item.update!(quantity: final_quantity)
+    else
+      @cart_item.destroy!
+    end
+
     @cart.update_last_interaction_time
     @cart.calculate_total_price
 
