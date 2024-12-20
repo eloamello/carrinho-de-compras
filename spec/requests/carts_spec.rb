@@ -21,10 +21,51 @@ RSpec.describe CartsController, type: :request do
     end
   end
 
-  xdescribe "POST /carts/add_items" do
-    let(:cart) { Cart.create }
-    let(:product) { Product.create(name: "Test Product", price: 10.0) }
-    let!(:cart_item) { CartItem.create(cart: cart, product: product, quantity: 1) }
+  describe "GET /cart" do
+    let(:cart) { create(:cart) }
+    let(:product) { create(:product, price: 10) }
+    let!(:cart_item) { create(:cart_item, cart: cart, product: product, quantity: 1) }
+
+    context 'when the cart does not exist' do
+      subject { get '/cart', as: :json }
+
+      it 'creates a new cart' do
+        expect { subject }.to change(Cart, :count).from(1).to(2)
+      end
+    end
+
+    context 'when the cart exists' do
+      before do
+        allow_any_instance_of(described_class).to receive(:session).and_return({ cart_id: cart.id })
+      end
+
+      subject { get '/cart', as: :json }
+
+      it 'returns the cart' do
+        subject
+        expect(JSON.parse(response.body)).to include({'id' => cart.id})
+      end
+    end
+  end
+
+  describe "DELETE /carts/:product_id" do
+    let(:cart) { create(:cart) }
+    let(:product) { create(:product, price: 10) }
+    let!(:cart_item) { create(:cart_item, cart: cart, product: product, quantity: 1) }
+
+    context 'when the product is in the cart' do
+      before do
+        allow_any_instance_of(described_class).to receive(:session).and_return({ cart_id: cart.id })
+      end
+
+      subject { delete "/carts/#{product.id}", as: :json }
+
+      it 'removes the product from the cart' do
+        expect { subject }.to change(CartItem, :count).by(-1)
+      end
+    end
+  end
+
   describe "POST /carts/add_items" do
     let(:cart) {create(:cart)}
     let(:product) {create(:product, price: 10)}
@@ -36,8 +77,6 @@ RSpec.describe CartsController, type: :request do
       end
 
       subject do
-        post '/cart/add_items', params: { product_id: product.id, quantity: 1 }, as: :json
-        post '/cart/add_items', params: { product_id: product.id, quantity: 1 }, as: :json
         post '/carts/add_items', params: { product_id: product.id, quantity: 1 }, as: :json
         post '/carts/add_items', params: { product_id: product.id, quantity: 1 }, as: :json
       end
