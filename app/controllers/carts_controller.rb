@@ -38,6 +38,24 @@ class CartsController < ApplicationController
     render json: cart_payload(@cart), status: :ok
   end
 
+  def destroy
+    @cart = find_cart
+
+    if @cart.nil?
+      return render json: {message: 'Cart not found'}, status: :not_found
+    end
+
+    @cart_item = @cart.cart_items.find_by(product_id: params[:product_id])
+    if @cart_item.nil?
+      return render json: { message: 'Product not in the cart' }, status: :bad_request
+    end
+
+    @cart_item.destroy!
+    @cart.calculate_total_price
+
+    render json: cart_payload(@cart), status: :ok
+  end
+
   private
 
   def cart_payload(cart)
