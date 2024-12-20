@@ -19,6 +19,7 @@ class CartsController < ApplicationController
 
     if @cart_item.save
       @cart.calculate_total_price
+      @cart.update_last_interaction_time
       render json: cart_payload(@cart), status: :created
     else
       render json: @cart_item.errors, status: :unprocessable_entity
@@ -34,6 +35,8 @@ class CartsController < ApplicationController
     end
 
     @cart_item.update!(quantity: @cart_item.quantity + params[:quantity].to_i)
+    @cart.update_last_interaction_time
+    @cart.calculate_total_price
 
     render json: cart_payload(@cart), status: :ok
   end
@@ -52,6 +55,7 @@ class CartsController < ApplicationController
 
     @cart_item.destroy!
     @cart.calculate_total_price
+    @cart.update_last_interaction_time
 
     render json: cart_payload(@cart), status: :ok
   end
