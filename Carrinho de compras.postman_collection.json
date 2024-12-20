@@ -1,0 +1,542 @@
+{
+	"info": {
+		"_postman_id": "46e899a9-397c-4178-907f-8e65ffb8afde",
+		"name": "Carrinho de compras",
+		"description": "API para gerenciamento de um carrinho de compras de e-commerce.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24865622"
+	},
+	"item": [
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"\",\r\n    \"price\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/products",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/products",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "carts",
+			"item": [
+				{
+					"name": "carts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"product_id\": 1,\r\n  \"quantity\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/carts",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "carts",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"product_id\": 1,\r\n  \"quantity\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:3000/carts",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "3000",
+									"path": [
+										"carts"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "Accept"
+								},
+								{
+									"key": "set-cookie",
+									"value": "_store_session=teQSQzJ7K%2Fdjlh6tADAPoAxWZ9t83h1O5upkXbn43G5ri4i78UIaZK8BQUrcE8HYj3TLWFloXGcZJaoUhwIb3nEAhbVZOErB2vzD%2BaKqyTSituT4jTKbsQcj82d7x07QdohsMIJuCytR6AQauE9LL0DHghjQF8nEcN6OTaF2YAbK3DUMWfp8OKuIZI41jP53%2FdTklyTT--U57t4F4KEie1pBGa--b12AwqU1r0qJrHXCNM%2BS6A%3D%3D; path=/; httponly; SameSite=Lax"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"0ab50258e5318c61243738f51efaa2d2\""
+								},
+								{
+									"key": "cache-control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "x-request-id",
+									"value": "245dd8a9-a024-488f-a3c9-fb78c0894468"
+								},
+								{
+									"key": "x-runtime",
+									"value": "0.124382"
+								},
+								{
+									"key": "server-timing",
+									"value": "start_processing.action_controller;dur=0.01, sql.active_record;dur=7.97, instantiation.active_record;dur=10.14, transaction.active_record;dur=6.49, process_action.action_controller;dur=73.90"
+								},
+								{
+									"key": "Content-Length",
+									"value": "151"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"products\": [\n        {\n            \"id\": 1,\n            \"name\": \"Samsung Galaxy S24 Ultra\",\n            \"quantity\": 5,\n            \"unit_price\": \"12999.99\",\n            \"total_price\": \"64999.95\"\n        }\n    ],\n    \"total_price\": \"64999.95\"\n}"
+						}
+					]
+				},
+				{
+					"name": "cart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/cart",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "cart",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:3000/cart",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "3000",
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "Accept"
+								},
+								{
+									"key": "set-cookie",
+									"value": "_store_session=9DXn8sIVV4xZjKnXOVHpZF8iqgUYWTEVdpMbCMJhIkKsBmDCcUjxhFL%2BCX4U%2FgCuL3cebj%2B0UeQrYC2fUDu3vkOjd2MFrAeCGWbOsVr%2F7z%2Boww2NvNWKIKMNL3KuFhcaaCKCYFU6trYRrWHHah2SHMhm6HctkaNSnvif63MALfvsrT%2B0%2BcYukdBhFe%2FtRCDE%2Btll006D--paIr2UHzBhowxobK--ZPth2h1zgWWUElNe%2B9DYDQ%3D%3D; path=/; httponly; SameSite=Lax"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"8867f2bc62db3b72353dc70f46de88d7\""
+								},
+								{
+									"key": "cache-control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "x-request-id",
+									"value": "863ccefe-622e-405e-a24d-a4a773ae177a"
+								},
+								{
+									"key": "x-runtime",
+									"value": "0.040961"
+								},
+								{
+									"key": "server-timing",
+									"value": "start_processing.action_controller;dur=0.01, sql.active_record;dur=0.37, instantiation.active_record;dur=0.09, process_action.action_controller;dur=3.80"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"products\": [],\n    \"total_price\": \"0.0\"\n}"
+						}
+					]
+				},
+				{
+					"name": "carts/add_items",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"product_id\": 1,\r\n  \"quantity\": 2\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/carts/add_items",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"carts",
+								"add_items"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "carts/add_items",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"product_id\": 1,\r\n  \"quantity\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:3000/carts/add_items",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "3000",
+									"path": [
+										"carts",
+										"add_items"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "Accept"
+								},
+								{
+									"key": "set-cookie",
+									"value": "_store_session=X2Xgpc7V7kMFYlNQu9gJzT8sTOwwW6JZhXeK162MgFYB5Qhz1YpByePgw6rbNGtFiwNUPOkoHomtvJJRSZXchNQfnDmlolAUSbSZ5Ug6uh%2Brp4yKVq70Te8LlWkqoo9gyVYYcRNMGFl7sIOKyw4X07mjaUk19GMyoO6drP2vCjqtb%2FSyN%2BqWYODeSswq7C0x1O4Yb%2FTf--sRwna9SY%2BKNuioPS--j3zKTip%2BOc5g2gg9SDirag%3D%3D; path=/; httponly; SameSite=Lax"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"c5e92856b6e4acdde1efb9f0b150e60f\""
+								},
+								{
+									"key": "cache-control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "x-request-id",
+									"value": "8a38507d-044e-48fe-b93f-f44eb827c70b"
+								},
+								{
+									"key": "x-runtime",
+									"value": "0.068493"
+								},
+								{
+									"key": "server-timing",
+									"value": "start_processing.action_controller;dur=0.01, sql.active_record;dur=6.06, instantiation.active_record;dur=0.37, transaction.active_record;dur=6.00, process_action.action_controller;dur=19.62"
+								},
+								{
+									"key": "Content-Length",
+									"value": "151"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"products\": [\n        {\n            \"id\": 1,\n            \"name\": \"Samsung Galaxy S24 Ultra\",\n            \"quantity\": 7,\n            \"unit_price\": \"12999.99\",\n            \"total_price\": \"90999.93\"\n        }\n    ],\n    \"total_price\": \"90999.93\"\n}"
+						}
+					]
+				},
+				{
+					"name": "carts/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:3000/carts/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"carts",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "carts/:id",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:3000/carts/1",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "3000",
+									"path": [
+										"carts",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "0"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-permitted-cross-domain-policies",
+									"value": "none"
+								},
+								{
+									"key": "referrer-policy",
+									"value": "strict-origin-when-cross-origin"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "Accept"
+								},
+								{
+									"key": "set-cookie",
+									"value": "_store_session=OWra5tn7bqnSzOWz18vZb%2BWkdA2hWlz%2BxqF54Stu5kdhJ8vuKy577KCfVA0hdpQv99%2BYDMuNdrOp3yHPMXYJgOEK96sYN8yQnzwF7hr7WFkhr%2BJ5EDz8f0U3E6uC9IOP5%2BWpPwEs7trojm%2BWsagAcSyOmYEotql%2BR%2FEFo5L4vG4Vz%2FXQAYxdXIXqycpjPpPLuDY3T%2FPa--AKdaUj5g3EloHCBM--MP2blAnC4QELUymV%2Fk0hhQ%3D%3D; path=/; httponly; SameSite=Lax"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"8867f2bc62db3b72353dc70f46de88d7\""
+								},
+								{
+									"key": "cache-control",
+									"value": "max-age=0, private, must-revalidate"
+								},
+								{
+									"key": "x-request-id",
+									"value": "9b0754b3-9daa-4efb-8c61-1c00c72ed48f"
+								},
+								{
+									"key": "x-runtime",
+									"value": "0.070889"
+								},
+								{
+									"key": "server-timing",
+									"value": "start_processing.action_controller;dur=0.01, sql.active_record;dur=5.33, instantiation.active_record;dur=0.12, transaction.active_record;dur=5.26, process_action.action_controller;dur=15.17"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"products\": [],\n    \"total_price\": \"0.0\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
