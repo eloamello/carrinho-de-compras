@@ -5,6 +5,7 @@ class Cart < ApplicationRecord
 
   def calculate_total_price
     self.total_price = cart_items.sum(&:total_price)
+    save!
   end
 
   # TODO: lógica para marcar o carrinho como abandonado e remover se abandonado

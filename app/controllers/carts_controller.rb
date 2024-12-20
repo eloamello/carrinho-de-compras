@@ -1,4 +1,10 @@
 class CartsController < ApplicationController
+
+  def show
+    @cart = find_or_create_cart
+    render json: cart_payload(@cart), status: :ok
+  end
+
   def create
     @cart = find_or_create_cart
 
@@ -13,6 +19,7 @@ class CartsController < ApplicationController
     @cart.calculate_total_price
 
     if @cart_item.save
+      @cart.calculate_total_price
       render json: cart_payload(@cart), status: :created
     else
       render json: @cart_item.errors, status: :unprocessable_entity
@@ -39,10 +46,14 @@ class CartsController < ApplicationController
 
   def find_or_create_cart
     if session[:cart_id].present?
-      Cart.find_by(id: session[:cart_id]) || create_new_cart
+      find_cart || create_new_cart
     else
       create_new_cart
     end
+  end
+
+  def find_cart
+    Cart.find_by(id: session[:cart_id])
   end
 
   def create_new_cart

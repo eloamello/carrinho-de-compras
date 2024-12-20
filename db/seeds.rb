@@ -23,3 +23,33 @@ Product.create([
     price: 999.99
   }
 ])
+
+Cart.create([
+  {
+    total_price: 0
+  },
+  {
+    total_price: 0
+  },
+  {
+    total_price: 0
+  }
+])
+
+CartItem.create([
+  {
+    cart_id: 1,
+    product_id: 3,
+    quantity: 5
+  },
+  {
+    cart_id: 1,
+    product_id: 2,
+    quantity: 3
+  },
+  {
+    cart_id: 2,
+    product_id: 3,
+    quantity: 2
+  }
+])
