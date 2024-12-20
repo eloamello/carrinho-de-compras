@@ -17,13 +17,9 @@ class CartsController < ApplicationController
       return render json: {message: 'Product already in the cart'}, status: :bad_request
     end
 
-    quantity = params[:quantity]
-
-    @cart_item = CartItem.new(cart: @cart, product: @product, quantity: quantity)
+    @cart_item = CartItem.new(cart: @cart, product: @product, quantity: params[:quantity])
 
     if @cart_item.save
-      @cart.calculate_total_price
-      @cart.update_last_interaction_time
       render json: cart_payload(@cart), status: :created
     else
       render json: @cart_item.errors, status: :unprocessable_entity
@@ -45,9 +41,6 @@ class CartsController < ApplicationController
       @cart_item.destroy!
     end
 
-    @cart.update_last_interaction_time
-    @cart.calculate_total_price
-
     render json: cart_payload(@cart), status: :ok
   end
 
@@ -64,8 +57,6 @@ class CartsController < ApplicationController
     end
 
     @cart_item.destroy!
-    @cart.calculate_total_price
-    @cart.update_last_interaction_time
 
     render json: cart_payload(@cart), status: :ok
   end
@@ -103,7 +94,7 @@ class CartsController < ApplicationController
   end
 
   def create_new_cart
-    cart = Cart.create!(total_price: 0)
+    cart = Cart.create!
     session[:cart_id] = cart.id
     cart
   end
