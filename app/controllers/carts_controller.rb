@@ -16,7 +16,6 @@ class CartsController < ApplicationController
     quantity = params[:quantity]
 
     @cart_item = CartItem.new(cart: @cart, product: @product, quantity: quantity)
-    @cart.calculate_total_price
 
     if @cart_item.save
       @cart.calculate_total_price
@@ -25,6 +24,21 @@ class CartsController < ApplicationController
       render json: @cart_item.errors, status: :unprocessable_entity
     end
   end
+
+  def add_items
+    @cart = find_or_create_cart
+
+    @cart_item = @cart.cart_items.find_by(product_id: params[:product_id])
+    if @cart_item.nil?
+      return render json: { message: 'Product not in the cart' }, status: :bad_request
+    end
+
+    @cart_item.update!(quantity: @cart_item.quantity + params[:quantity].to_i)
+
+    render json: cart_payload(@cart), status: :ok
+  end
+
+  private
 
   def cart_payload(cart)
     products = cart.cart_items.includes(:product).map do |cart_item|

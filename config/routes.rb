@@ -3,7 +3,9 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   resources :products
-  resources :carts, except: %i[show]
+  resources :carts, except: %i[show] do
+    post :add_items, on: :collection
+  end
 
   get '/cart', to: 'carts#show', as: :show_cart
 
